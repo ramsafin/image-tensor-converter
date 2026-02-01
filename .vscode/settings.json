@@ -1,0 +1,41 @@
+{
+  // -------------------------------------------------
+  // Python environment
+  // -------------------------------------------------
+  "python.terminal.activateEnvironment": true,
+  "python.terminal.activateEnvInCurrentTerminal": true,
+  // -------------------------------------------------
+  // Formatting & code actions
+  // -------------------------------------------------
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "always"
+  },
+  "[python]": {
+    "editor.defaultFormatter": "charliermarsh.ruff"
+  },
+  // -------------------------------------------------
+  // Ruff
+  // -------------------------------------------------
+  "ruff.enable": true,
+  "ruff.lint.enable": true,
+  // -------------------------------------------------
+  // Pyright / Pylance
+  // -------------------------------------------------
+  "python.analysis.autoImportCompletions": true,
+  "python.analysis.diagnosticMode": "workspace",
+  // -------------------------------------------------
+  // Pytest
+  // -------------------------------------------------
+  "python.testing.pytestEnabled": true,
+  "python.testing.unittestEnabled": false,
+  "python.testing.autoTestDiscoverOnSaveEnabled": true,
+  "python.testing.pytestArgs": [
+    "tests"
+  ],
+  // -------------------------------------------------
+  // Misc
+  // -------------------------------------------------
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true
+}

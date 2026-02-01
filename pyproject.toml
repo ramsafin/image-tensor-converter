@@ -1,0 +1,115 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+# ---------------------------------------------------------------------
+# Project metadata (PEP 621)
+# ---------------------------------------------------------------------
+[project]
+name = "python-project-template"
+version = "0.1.0"
+description = "A modern Python project template using pyproject.toml and best practices."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Safin Ramil", email = "ramilsafnab1996@gmail.com" }]
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.0",
+  "pytest-cov>=5.0",
+  "ruff>=0.4.0",
+  "pre-commit>=4.5.0",
+  "pyright>=1.1.400",
+]
+
+# ---------------------------------------------------------------------
+# Setuptools configuration
+# ---------------------------------------------------------------------
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["*"]
+exclude = ["tests*", "docs*", "build*", "dist*"]
+
+# ---------------------------------------------------------------------
+# Pytest
+# ---------------------------------------------------------------------
+[tool.pytest.ini_options]
+minversion = "8.0"
+addopts = [
+  "-v",
+  "--tb=short",
+  "--strict-markers",
+  "--strict-config",
+  "--import-mode=importlib",
+]
+testpaths = ["tests"]
+python_files = ["test_*.py", "*_test.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+
+# ---------------------------------------------------------------------
+# Coverage
+# ---------------------------------------------------------------------
+[tool.coverage.run]
+source = ["src"]
+omit = ["*/tests/*", "*/test_*.py"]
+
+[tool.coverage.report]
+exclude_lines = [
+  "pragma: no cover",
+  "def __repr__",
+  "raise AssertionError",
+  "raise NotImplementedError",
+]
+
+# ---------------------------------------------------------------------
+# Ruff (lint + format)
+# ---------------------------------------------------------------------
+[tool.ruff]
+target-version = "py310"
+line-length = 120
+
+[tool.ruff.lint]
+select = [
+  "E",   # pycodestyle errors
+  "W",   # pycodestyle warnings
+  "F",   # Pyflakes
+  "I",   # isort
+  "B",   # flake8-bugbear
+  "C4",  # flake8-comprehensions
+  "UP",  # pyupgrade
+  "YTT", # flake8-2020
+  "RUF", # Ruff-specific rules
+  "ANN", # flake8-annotations
+]
+ignore = []
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["F401"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+
+[tool.ruff.lint.isort]
+known-first-party = ["project_name"]
+lines-after-imports = 2
+
+# ---------------------------------------------------------------------
+# Pyright (static typing)
+# ---------------------------------------------------------------------
+[tool.pyright]
+pythonVersion = "3.10"
+typeCheckingMode = "basic"
+
+include = ["src"]
+exclude = ["**/tests", "**/.pytest_cache", "**/__pycache__"]
+
+reportMissingImports = true
+reportMissingTypeStubs = "warning"
+reportUnnecessaryCast = true
+reportUnnecessaryComparison = true
+reportPrivateImportUsage = "warning"
+reportUnusedCallResult = "warning"
